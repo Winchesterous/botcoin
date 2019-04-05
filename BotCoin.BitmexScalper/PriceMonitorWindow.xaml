@@ -1,0 +1,43 @@
+﻿<Window x:Class="BotCoin.BitmexScalper.PriceMonitorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:zed="clr-namespace:BotCoin.BitmexScalper"
+        Title="Price Monitor" Closed="OnWindowClosed" Loaded="OnWindowLoaded" Width="860.62">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <Grid>
+                <Grid Margin="0,7,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="22"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="90"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="VWAP" VerticalAlignment="Center" Margin="10,0,0,0" Click="OnVwapCheckClick" x:Name="cbVwap"/>
+                    <ComboBox Grid.Column="1" Margin="20,0,0,0" SelectionChanged="OnChartTypeChanged" x:Name="cbChartType" DisplayMemberPath="Item2" HorizontalAlignment="Right" Width="80" ToolTip="Chart types"/>
+                    <DatePicker Grid.Column="2" x:Name="date1" VerticalAlignment="Center" Margin="10,0,0,0" ToolTip="Start date, obligatory field" SelectedDateChanged="OnDate1DateChanged"/>
+                    <ComboBox Grid.Column="3" x:Name="cbPeriod" Margin="7,0,0,0" VerticalAlignment="Center" SelectionChanged="OnPeriodSelected" DisplayMemberPath="Period" />
+                    <Button Grid.Column="4" Width="25" HorizontalAlignment="Left" Margin="7,0,0,0" Background="LightCyan" Click="OnPeriodRefreshClick" x:Name="btnRefreshPeriod" ToolTip="Reload chart"/>
+                    <DatePicker Grid.Column="5" x:Name="date2" VerticalAlignment="Center" Margin="7,0,0,0" ToolTip="End date, may be undefined" SelectedDateChanged="OnDate2DateChanged"/>
+                    <Button Grid.Column="6" Content="Price Levels" Width="80" HorizontalAlignment="Right" Click="OnShowLevelsClick"/>
+                    <Label Grid.Column="8" x:Name="lblTimer" Content="00:00" Margin="0,0,10,0" HorizontalAlignment="Right" ToolTip="Chart timer activity"/>
+                </Grid>
+            </Grid>
+        </DockPanel>
+        <WindowsFormsHost Grid.Row="1" Name="windowsFormsHost1" Margin="0,5.338,9.592,4.634">
+            <zed:ChartZedGraphControl x:Name="zedPrice" />
+        </WindowsFormsHost>
+    </Grid>
+</Window>

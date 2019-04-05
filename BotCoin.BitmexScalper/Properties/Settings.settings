@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BotCoin.BitmexScalper.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="XbtSwap" Type="System.String" Scope="User">
+      <Value Profile="(Default)">XBTUSD</Value>
+    </Setting>
+    <Setting Name="EthSwap" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ETHUSD</Value>
+    </Setting>
+    <Setting Name="LtcContract" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LTCM19</Value>
+    </Setting>
+    <Setting Name="EosContract" Type="System.String" Scope="User">
+      <Value Profile="(Default)">EOSM19</Value>
+    </Setting>
+    <Setting Name="XrpContract" Type="System.String" Scope="User">
+      <Value Profile="(Default)">XRPM19</Value>
+    </Setting>
+    <Setting Name="AdaContract" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ADAM19</Value>
+    </Setting>
+    <Setting Name="TrxContract" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TRXM19</Value>
+    </Setting>
+    <Setting Name="BchContract" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BCHM19</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

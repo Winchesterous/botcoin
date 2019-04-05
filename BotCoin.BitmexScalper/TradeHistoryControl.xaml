@@ -1,0 +1,205 @@
+﻿<UserControl x:Class="BotCoin.BitmexScalper.TradeHistoryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BotCoin.BitmexScalper"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="GridHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="DataGrid">
+            <Setter Property="DataGrid.HorizontalGridLinesBrush" Value="LightGray"/>
+            <Setter Property="DataGrid.GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="DataGrid.SelectionUnit" Value="Cell"/>
+            <Setter Property="DataGrid.CanUserReorderColumns" Value="False"/>
+        </Style>
+    </UserControl.Resources>
+    <TabControl>
+        <TabItem Header="VWAPs">
+                <DataGrid x:Name="gridVwaps" Margin="5,6,5.451,4.408" Style="{StaticResource DataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Time" Width="100" Binding="{Binding Time}" HeaderStyle="{StaticResource GridHeader}"/>
+                        <DataGridTextColumn Header="BTC" Width="90" Binding="{Binding XBT}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="ETH" Width="90" Binding="{Binding ETH}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="LTC" Width="90" Binding="{Binding LTC}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="EOS" Width="90" Binding="{Binding EOS}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="XRP" Width="90" Binding="{Binding XRP}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="ADA" Width="90" Binding="{Binding ADA}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="BCH" Width="85" Binding="{Binding BCH}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+        </TabItem>
+        <TabItem Header="Trades">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DataGrid x:Name="gridTrades" Margin="5,6,5.451,4.408" Style="{StaticResource DataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Symbol" Width="60" Binding="{Binding Instrument}"/>
+                        <DataGridTextColumn Header="Type" Width="60" Binding="{Binding TradeType}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Qty" Width="50" Binding="{Binding Qty}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Start Time" Width="110" Binding="{Binding Time1}" HeaderStyle="{StaticResource GridHeader}"/>
+                        <DataGridTextColumn Header="End Time" Width="110" Binding="{Binding Time2}" HeaderStyle="{StaticResource GridHeader}"/>
+                        <DataGridTextColumn Header="Elapsed Time" Width="90" Binding="{Binding ElapsedTime}"/>
+                        <DataGridTextColumn Header="Profit XBT" Width="90" Binding="{Binding ProfitXbt}"/>
+                        <DataGridTextColumn Header="Price Gain" Width="65" Binding="{Binding PriceGainUsd}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="TP/SL" Width="50" Binding="{Binding TakeStopRatio}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Risk %" Width="50" Binding="{Binding RiskPcnt}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Stop USD" Width="65" Binding="{Binding StopUsd}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="FeePaid XBT" Width="90" Binding="{Binding FeePaidXbt}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Realized PnL" Width="90" Binding="{Binding RealisedPnlXbt}"/>
+                        <DataGridTextColumn Header="Position ID" Width="70" Binding="{Binding ShortPositionId}"/>
+                        <DataGridTextColumn Header="Balance" Width="90" Binding="{Binding BalanceXbt}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Positions">
+            <Grid>
+                <DataGrid x:Name="gridPositions" Margin="5" Style="{StaticResource DataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Position ID" Width="70" Binding="{Binding ShortPositionId}"/>
+                        <DataGridTextColumn Header="Time" Width="110" Binding="{Binding Time}"/>
+                        <DataGridTextColumn Header="Side" Width="50" Binding="{Binding Side}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Qty" Width="50" Binding="{Binding Qty}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Leaves Qty" Width="70" Binding="{Binding LvsQty}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Cum Qty" Width="60" Binding="{Binding CummQty}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Price" Width="60" Binding="{Binding PriceValue}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Cost XBT" Width="90" Binding="{Binding CostXBT}"/>
+                        <DataGridTextColumn Header="Fee %" Width="60" Binding="{Binding CommissionPcnt}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Instrument" Width="100" Binding="{Binding Instrument}" HeaderStyle="{StaticResource GridHeader}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

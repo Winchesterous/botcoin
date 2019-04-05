@@ -1,0 +1,20 @@
+﻿<Window x:Class="BotCoin.RiskCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BotCoin.RiskCalculator"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" Title="Risk Calculator" Height="335.076" Width="273.218" FontSize="16">
+    <TabControl x:Name="tabCtrl">
+        <TabItem Header="XBTUSD">
+            <local:RiskCalculatorControl x:Name="xbtCtrl" RoundDigits="5"/>
+        </TabItem>
+        <TabItem Header="ETHUSD">
+            <local:RiskCalculatorControl x:Name="ethCtrl" RoundDigits="5"/>
+        </TabItem>
+        <TabItem Header="LTC">
+            <local:RiskCalculatorControl x:Name="ltcCtrl" RoundDigits="8"/>
+        </TabItem>
+    </TabControl>
+</Window>

@@ -1,0 +1,259 @@
+﻿<UserControl x:Class="BotCoin.BitmexScalper.PositionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BotCoin.BitmexScalper" mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="GreenButton">
+            <Setter Property="Button.Foreground" Value="White"/>
+            <Setter Property="Button.Background" Value="#FF56B372"/>
+        </Style>
+        <Style x:Key="RedButton">
+            <Setter Property="Button.Foreground" Value="White"/>
+            <Setter Property="Button.Background" Value="LightCoral"/>
+        </Style>
+        <Style x:Key="Label">
+            <Setter Property="Label.FontWeight" Value="Bold"/>
+            <Setter Property="Label.FontSize" Value="16"/>
+        </Style>
+        <Style x:Key="TextBox">
+            <Setter Property="TextBox.TextAlignment" Value="Center"/>
+            <Setter Property="TextBox.Width" Value="58"/>
+            <Setter Property="TextBox.FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="PcntComboBox">
+            <Setter Property="ComboBox.MaxDropDownHeight" Value="300"/>
+            <Setter Property="ComboBox.Width" Value="60"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <Grid Background="#F5F5F5" x:Name="gridPrices">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblBidPrice" Content="0.0" Foreground="#FF56B372" Style="{StaticResource Label}" Margin="5 0 0 0"/>
+            <Label x:Name="lblAskPrice" Content="0.0" Foreground="DarkRed" Style="{StaticResource Label}" Margin="5 0 0 0" Grid.Column="1"/>
+            <Label x:Name="lblState" Content="###" FontSize="14" Foreground="LightCoral" Margin="5 0 0 0" Grid.Column="3" HorizontalAlignment="Right" ToolTip="Position state"/>
+        </Grid>
+        <TabControl Margin="5 5 0 0" x:Name="tabPosition" FontSize="14">
+            <TabItem Header="Create Position">
+                <Grid Margin="5,5,2,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Position Size" />
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="lblPositionSize" HorizontalAlignment="Center" Style="{StaticResource Label}">0</Label>
+                        <Label x:Name="lblLeverage" Content="0x" Grid.Column="1" FontSize="14" ToolTip="Leverage"/>
+                    </Grid>
+                    <Label Content="Balance / Risk" Grid.Row="1"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <TextBox x:Name="tbBalance" Style="{StaticResource TextBox}" KeyDown="OnKeyDown" TextChanged="OnTextChanged" ToolTip="Balance XBT"/>
+                        <TextBox x:Name="tbRiskPcnt" Style="{StaticResource TextBox}" TextChanged="OnTextChanged" KeyDown="OnKeyDown" />
+                    </StackPanel>
+                    <Label Content="Slip Price/Stop" Grid.Row="2" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="tbPriceSlip" Style="{StaticResource TextBox}" TextChanged="OnTextChanged" KeyDown="OnKeyDown" Background="#F5F5F5" />
+                        <TextBox x:Name="tbStopSlip" Style="{StaticResource TextBox}" HorizontalAlignment="Left" TextChanged="OnTextChanged" KeyDown="OnKeyDown" Background="#FFE9D2" />
+                    </StackPanel>
+                    <Label Content="Stop Loss %" Grid.Row="3" />
+                    <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <TextBox x:Name="tbStopLoss1" Text="0" Style="{StaticResource TextBox}" HorizontalAlignment="Left" TextChanged="OnStopLossTextChanged" KeyDown="OnKeyDown" Width="25"/>
+                        <TextBox x:Name="tbStopLoss2" Style="{StaticResource TextBox}" HorizontalAlignment="Left" TextChanged="OnStopLossTextChanged" KeyDown="OnKeyDown" Width="33"/>
+                    </StackPanel>
+                    <Label Grid.Row="4" Content="Order Type"/>
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" x:Name="panelOrdType">
+                        <RadioButton x:Name="rbOrdTypeAuto" VerticalAlignment="Center" GroupName="OrdType" ToolTip="Auto mode" Checked="OnOrderTypeChecked"/>
+                        <RadioButton x:Name="rbOrdTypeLimit" Margin="10 0 0 0" VerticalAlignment="Center" GroupName="OrdType" ToolTip="Limit order" Checked="OnOrderTypeChecked"/>
+                        <RadioButton x:Name="rbOrdTypeStopLimit" Margin="10 0 0 0" VerticalAlignment="Center" GroupName="OrdType" ToolTip="Stop limit order" Checked="OnOrderTypeChecked"/>
+                        <RadioButton x:Name="rbOrdTypeMarket" Margin="10 0 0 0" VerticalAlignment="Center" GroupName="OrdType" ToolTip="Market order" Background="Bisque" Checked="OnOrderTypeChecked"/>
+                    </StackPanel>
+                    <Label Content="Limit Order" Grid.Row="5" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="tbLimitPrice" Style="{StaticResource TextBox}" Width="60" HorizontalAlignment="Left" KeyDown="OnKeyDown" ToolTip="Order price for creation limit or stop limit orders"/>
+                    </StackPanel>
+                    <Label Grid.Row="6" Content="Stop Order"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBox x:Name="tbStopLimitPrice" Style="{StaticResource TextBox}" Width="60" HorizontalAlignment="Left" KeyDown="OnKeyDown" ToolTip="Order price for creation limit or stop limit orders" />
+                        <TextBox x:Name="tbStopPriceDelta" Style="{StaticResource TextBox}" ToolTip="Stop price trigger delta"/>
+                    </StackPanel>
+                    <Label Grid.Row="7" Content="Limit Size"/>
+                    <TextBox x:Name="tbPositionSize" Grid.Row="7" Grid.Column="1" Style="{StaticResource TextBox}" HorizontalAlignment="Left" Width="60" FontWeight="Bold" Background="#F5F5F5"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.ColumnSpan="3" Margin="5,10,0,0">
+                        <Button x:Name="btnBuy" 
+                                                Content="BUY"
+                                                Style="{StaticResource GreenButton}"
+                                                Width="80" Margin="0,0,5,0" ToolTip="Hotkey F1"
+                                                Click="OnBuyOrderClick"/>
+                        <Button x:Name="btnCancelWatching"
+                                                Content="X" 
+                                                Width="25"
+                                                Margin="1,0,2,0" ToolTip="Shortkey ESC"
+                                                Click="OnCancelOrderWatchingClick"/>
+                        <Button x:Name="btnSell" 
+                                                Content="SELL" Style="{StaticResource RedButton}"
+                                                ToolTip="Hotkey F4"
+                                                Width="80" Margin="3,0,0,0" 
+                                                Click="OnSellOrderClick"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Close Position" FontSize="14">
+                <Grid x:Name="gridClosePosition" IsEnabled="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,2,0">
+                        <GroupBox x:Name="gbQuickClose" Header="Quick Close">
+                            <Grid Margin="2,5,0,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="5"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="55"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Limit"/>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                    <TextBox x:Name="tbCloseSlip" Height="25" Style="{StaticResource TextBox}" HorizontalAlignment="Left" Margin="0,0,3,0" ToolTip="Slippage value USD" />
+                                    <Button x:Name="btnCloseLimit" Content="CLOSE LIMIT" Width="90" Height="25" HorizontalAlignment="Left" Click="OnCloseLimitPositionClick"/>
+                                </StackPanel>
+                                <Label Content="Market" Grid.Row="2"/>
+                                <Button x:Name="btnCloseMarket" Grid.Row="2" Grid.Column="1" Content="CLOSE MARKET" Height="25" Width="105" HorizontalAlignment="Left" Click="OnCloseMarketPositionClick" ToolTip="Hotkey F12"/>
+                            </Grid>
+                        </GroupBox>
+                        <TabControl TabStripPlacement="Bottom" Margin="0 3 0 3">
+                            <TabItem Header="Take Profit">
+                                <Grid Margin="0 0 0 3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="0.6*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Profit1" />
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                        <TextBox x:Name="tbProfit1" Width="60" HorizontalAlignment="Left" Style="{StaticResource TextBox}" />
+                                        <ComboBox x:Name="cbProfitPcnt1" Style="{StaticResource PcntComboBox}"/>
+                                        <Label Content="%"/>
+                                    </StackPanel>
+                                    <Label Content="Profit2" Grid.Row="1"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                                        <TextBox x:Name="tbProfit2" Width="60" HorizontalAlignment="Left" Style="{StaticResource TextBox}"/>
+                                        <ComboBox x:Name="cbProfitPcnt2" Style="{StaticResource PcntComboBox}"/>
+                                        <Label Content="%"/>
+                                    </StackPanel>
+                                    <Label Content="Profit3" Grid.Row="2"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                                        <TextBox x:Name="tbProfit3" Width="60" HorizontalAlignment="Left" Style="{StaticResource TextBox}"/>
+                                        <ComboBox x:Name="cbProfitPcnt3" Style="{StaticResource PcntComboBox}"/>
+                                        <Label Content="%"/>
+                                    </StackPanel>
+                                    <Button Content="CREATE ORDERS" Grid.Row="3" Grid.Column="1" Width="115" Height="25" Margin="0,4,2,2" HorizontalAlignment="Left"
+                                                            Style="{StaticResource GreenButton}" Click="OnCreateTakeProfitClick" ToolTip="Hotkey F1"/>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="Trailing">
+                                <Grid Margin="0,0,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Exchange Trail"/>
+                                    <CheckBox x:Name="cbExchTrail" Grid.Column="1" VerticalAlignment="Center"/>
+                                    <Label Content="Trail Value" Grid.Row="1"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                                        <TextBox x:Name="tbTrailValue" Height="25" Style="{StaticResource TextBox}" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <Label Content="Price/Stop" Grid.Row="2"/>
+                                    <Label x:Name="lblPriceStop" Grid.Row="2" Content="0.00" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Left"/>
+                                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="3" Margin="0,5,0,0">
+                                        <Button x:Name="btnCancelTrail" Content="CANCEL" Height="28" Width="60" Margin="5,0,0,0" HorizontalAlignment="Left" Style="{StaticResource RedButton}" Click="OnCancelTrailClick" IsEnabled="False"/>
+                                        <Button x:Name="btnCreateTrail" Content="CREATE" Height="28" Width="60" Margin="5,0,0,0" HorizontalAlignment="Left" Style="{StaticResource GreenButton}" Click="OnCreateTrailClick"/>
+                                        <Button x:Name="btnZeroStop" Content="0stop" Height="28" Width="60" Margin="25,0,0,0" Background="LightCyan" Click="OnZeroStopClick"/>
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <GroupBox Margin="5 0 0 0" x:Name="gbPosition" FontSize="14">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.4*"/>
+                        <ColumnDefinition Width="2.0*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Profit XBT" />
+                    <Label Content="{Binding ProfitXbt}" Grid.Column="1" FontWeight="Bold" x:Name="lblProfitXbt"/>
+                    <Label Content="Profit Taker" Grid.Row="1" />
+                    <Label Content="{Binding TakerProfitUsd}" Grid.Row="1" Grid.Column="1" FontWeight="Bold" />
+                    <Label Content="Profit Maker" Grid.Row="2" />
+                    <Label Content="{Binding MakerProfitUsd}" Grid.Row="2" Grid.Column="1" FontWeight="Bold" />
+                    <Label Content="Side" Grid.Row="3" />
+                    <Label Content="{Binding Side}" Grid.Row="3" Grid.Column="1" FontWeight="Bold" x:Name="lblPosSide" />
+                    <Label Content="Size" Grid.Row="4" />
+                    <Label Content="{Binding Size}" Grid.Row="4" Grid.Column="1" FontWeight="Bold" x:Name="lblPosSize" />
+                    <Label Content="Entry Price" Grid.Row="5" />
+                    <Label Content="{Binding EntryPrice}" Grid.Row="5" Grid.Column="1" FontWeight="Bold" x:Name="lblEntryPrice"/>
+                    <Label Content="Value" Grid.Row="6" />
+                    <Label Content="{Binding Value}" Grid.Row="6" Grid.Column="1" FontWeight="Bold" />
+                    <Label Content="Liq. Price" Grid.Row="7" />
+                    <Label Content="{Binding LiqPrice}" Grid.Row="7" Grid.Column="1" FontWeight="Bold" />
+                    <Label Content="Margin" Grid.Row="8" />
+                    <Label Content="{Binding PositionMargin}" Grid.Row="8" Grid.Column="1" FontWeight="Bold" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+    </StackPanel>
+</UserControl>

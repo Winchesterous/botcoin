@@ -1,0 +1,149 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:zed="clr-namespace:ZedGraph;assembly=ZedGraph"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="BotCoin.BitmexScalper.MainWindow"
+        xmlns:ctrl="clr-namespace:BotCoin.BitmexScalper"
+        Title="BitMEX Scalper" Height="763.704" d:DesignWidth="855.242"
+        Loaded="OnWindowLoaded" Closed="OnWindowClosed" PreviewKeyDown="OnPreviewKeyDown"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.7*"/>
+                <ColumnDefinition Width="245"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>            
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*"/>
+                    <RowDefinition Height="1.2*"/>
+                    <RowDefinition Height="1.7*"/>
+                </Grid.RowDefinitions>
+                <ctrl:StopOrderControl x:Name="stopOrderCtrl"/>
+                <ctrl:LimitOrderControl x:Name="limitOrderCtrl" Grid.Row="1"/>
+                <ctrl:TradeHistoryControl x:Name="tradeHistoryCtrl" Grid.Row="2"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TabControl x:Name="tabInstruments" FontSize="14" Margin="0 5 0 0">
+                    <TabItem x:Name="tabItemXbt">
+                        <ctrl:PositionControl x:Name="xbtPositionCtrl" PriceMultiplier="1"/>
+                    </TabItem>
+                    <TabItem x:Name="tabItemEth">
+                        <ctrl:PositionControl x:Name="ethPositionCtrl" PriceMultiplier="1"/>
+                    </TabItem>
+                    <TabItem x:Name="tabItemLtc">
+                        <ctrl:PositionControl x:Name="ltcPositionCtrl"/>
+                    </TabItem>
+                    <TabItem x:Name="tabItemEos">
+                        <ctrl:PositionControl x:Name="eosPositionCtrl"/>
+                    </TabItem>
+                    <TabItem x:Name="tabItemXrp">
+                        <ctrl:PositionControl x:Name="xrpPositionCtrl"/>
+                    </TabItem>
+                    <TabItem x:Name="tabItemAda">
+                        <ctrl:PositionControl x:Name="adaPositionCtrl"/>
+                    </TabItem>
+                    <TabItem x:Name="tabItemBch">
+                        <ctrl:PositionControl x:Name="bchPositionCtrl"/>
+                    </TabItem>
+                    <TabItem x:Name="tabItemTrx">
+                        <ctrl:PositionControl x:Name="trxPositionCtrl"/>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <GroupBox Header="Events" Grid.Column="2">
+                <ListView x:Name="lstEvents" Margin="0 5 0 5">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Type" Width="60" DisplayMemberBinding="{Binding EventType}"/>
+                            <GridViewColumn Header="Event" Width="210" DisplayMemberBinding="{Binding Message}"/>
+                            <GridViewColumn Header="Time" Width="60" DisplayMemberBinding="{Binding TimeStr}"/>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Clear All" Click="OnEventsMenuItemClick"/>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                </ListView>
+            </GroupBox>
+        </Grid>
+        <DockPanel Grid.Row="2" Height="35">
+            <StatusBar>
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="135"/>
+                                <ColumnDefinition Width="135"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem>
+                    <Menu>
+                        <MenuItem Header="MENU">
+                            <MenuItem Header="VWAPs">
+                                <MenuItem Header="Bitmex" Click="OnVwapBitmexMenuClick" x:Name="menuVwapBtx"/>
+                                <MenuItem Header="Binance" Click="OnVwapBinanceMenuClick" x:Name="menuVwapBin"/>
+                                <MenuItem Header="Bitstamp" Click="OnVwapBitstampMenuClick"  x:Name="menuVwapBts"/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Leverage"/>
+                            <MenuItem Header="Charts">
+                                <MenuItem Header="Bitstamp" Click="OnOpenChartsClick"/>
+                                <MenuItem Header="Binance"/>
+                                <MenuItem Header="BitMEX"/>
+                            </MenuItem>
+                            <MenuItem Header="Instrument Settings" Click="OnSettingsDialogClick"/>
+                        </MenuItem>
+                    </Menu>
+                </StatusBarItem>
+                <!--<StatusBarItem Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" >
+                        <Label x:Name="lblLeverage" VerticalAlignment="Center" Content="0.0x" FontWeight="Bold"/>
+                        <ComboBox x:Name="cbLeverage" Height="20" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="OnLeverageSelected">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </StatusBarItem>-->
+                <StatusBarItem Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Balance"/>
+                        <Label x:Name="lblBalance" VerticalAlignment="Center" Content="0.00000 XBT" FontWeight="Bold"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Margin"/>
+                        <Label x:Name="lblAvailMargin" VerticalAlignment="Center" Content="0.00000 XBT" FontWeight="Bold"/>
+                    </StackPanel>
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="3">
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker x:Name="datePicker1" SelectedDateChanged="OnDatePickerSelectedDateChanged"/>
+                        <Label x:Name="lblVwapExchange" />
+                    </StackPanel>
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="4">
+                    <TextBlock x:Name="tbWatchingEvent" Text="ACCOUNT (0 ms)" Width="120" />
+                </StatusBarItem>
+                <StatusBarItem Grid.Column="5">
+                    <Label x:Name="lblBtxAccount" Foreground="Green"/>
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
+    </Grid>
+</Window>

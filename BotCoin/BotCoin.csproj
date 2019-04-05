@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{093E9B47-124B-4615-A69F-E90A5F2789C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BotCoin</RootNamespace>
+    <AssemblyName>BotCoin</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>6ff0ab9c</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Binance.Net, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Binance.Net.2.1.2\lib\net46\Binance.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Interop.WinHttp">
+      <HintPath>.\Interop.WinHttp.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MessagePack, Version=1.7.3.4, Culture=neutral, PublicKeyToken=b4a0369545f0a1be, processorArchitecture=MSIL">
+      <HintPath>packages\MessagePack.1.7.3.4\lib\net45\MessagePack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine, Version=0.10.0.0, Culture=neutral, PublicKeyToken=ee9af13f57f00acc, processorArchitecture=MSIL">
+      <HintPath>packages\SuperSocket.ClientEngine.Core.0.10.0\lib\net45\SuperSocket.ClientEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Specialized, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Collections.Specialized.4.3.0\lib\net46\System.Collections.Specialized.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.NameResolution, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.NameResolution.4.3.0\lib\net46\System.Net.NameResolution.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Security.4.3.0\lib\net46\System.Net.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="websocket-sharp, Version=1.0.2.32519, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <HintPath>packages\WebSocketSharp-NonPreRelease.1.0.0\lib\net35\websocket-sharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebSocket4Net, Version=0.15.2.11, Culture=neutral, PublicKeyToken=eb4e154b696bf72a, processorArchitecture=MSIL">
+      <HintPath>packages\WebSocket4Net.0.15.2\lib\net45\WebSocket4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiClient\BitmexClient.cs" />
+    <Compile Include="ApiClient\HitBtcClient.cs" />
+    <Compile Include="ApiClient\RestApiClient2.cs" />
+    <Compile Include="ApiClient\KrakenClient.cs" />
+    <Compile Include="ApiClient\BittrexClient.cs" />
+    <Compile Include="ApiClient\BitfinexClient.cs" />
+    <Compile Include="ApiClient\BitbayClient.cs" />
+    <Compile Include="ApiClient\KunaClient.cs" />
+    <Compile Include="ApiClient\BitstampClient.cs" />
+    <Compile Include="ApiClient\OkExClient.cs" />
+    <Compile Include="ApiClient\QuadrigaClient.cs" />
+    <Compile Include="Core\ConfigSection\BitmexBotElement.cs" />
+    <Compile Include="Core\ConfigSection\BitmexScalperElement.cs" />
+    <Compile Include="Core\ConfigSection\BitmexContractsCollection.cs" />
+    <Compile Include="Core\ConfigSection\BitmexContractElement.cs" />
+    <Compile Include="Core\ConfigSection\InstrumentElement.cs" />
+    <Compile Include="Core\ConfigSection\InstrumentsCollection.cs" />
+    <Compile Include="Core\ConfigSection\ExchangeElement.cs" />
+    <Compile Include="Core\ConfigSection\ConnectionsCollection.cs" />
+    <Compile Include="Core\ConfigSection\ExchangesCollection.cs" />
+    <Compile Include="Core\ConfigSection\BotcoinConfigSection.cs" />
+    <Compile Include="Core\ConfigSection\ProfitRatioStrategyElement.cs" />
+    <Compile Include="Core\ConfigSection\RestSchedulerElement.cs" />
+    <Compile Include="Core\ConfigSection\TradingStrategyElement.cs" />
+    <Compile Include="Core\ConfigSection\SettingsElement.cs" />
+    <Compile Include="Core\ConfigSection\ConnectionElement.cs" />
+    <Compile Include="Core\ExchangeAttribute.cs" />
+    <Compile Include="Core\ConfigSection\Extensions.cs" />
+    <Compile Include="Core\Utils.cs" />
+    <Compile Include="DataType\ApiResult.cs" />
+    <Compile Include="DataType\CurrencyRate.cs" />
+    <Compile Include="DataType\Database\DbBitstampTrade.cs" />
+    <Compile Include="DataType\Database\DbTradeBitmex.cs" />
+    <Compile Include="DataType\Database\DbTradeBinance.cs" />
+    <Compile Include="DataType\Database\DbInstrumentSpread.cs" />
+    <Compile Include="DataType\Database\DbPositionState.cs" />
+    <Compile Include="DataType\Database\DbMessage.cs" />
+    <Compile Include="DataType\Database\DbPosition.cs" />
+    <Compile Include="DataType\Database\DbPositionBase.cs" />
+    <Compile Include="DataType\Database\DbSession.cs" />
+    <Compile Include="DataType\Database\DbResult.cs" />
+    <Compile Include="DataType\Database\DbSpread.cs" />
+    <Compile Include="DataType\Database\DbPriceLevel.cs" />
+    <Compile Include="DataType\Database\DbOrder.cs" />
+    <Compile Include="DataType\Database\DbIndicatorVwap.cs" />
+    <Compile Include="DataType\Database\DbTrade.cs" />
+    <Compile Include="DataType\EventArgs\BinanceInstrumentsEventArgs.cs" />
+    <Compile Include="DataType\EventArgs\BitmexEventArgs.cs" />
+    <Compile Include="DataType\EventArgs\ExchangePricesEventArgs.cs" />
+    <Compile Include="DataType\EventArgs\LiquidationEventArgs.cs" />
+    <Compile Include="DataType\EventArgs\OrderBookEventArgs.cs" />
+    <Compile Include="DataType\EventArgs\PosWatcherEventArgs.cs" />
+    <Compile Include="DataType\EventArgs\TickerEventArgs.cs" />
+    <Compile Include="DataType\EventArgs\TradeEventArgs.cs" />
+    <Compile Include="DataType\ExchangeIotaOrder.cs" />
+    <Compile Include="DataType\ExchangeDashOrder.cs" />
+    <Compile Include="DataType\ExchangeXrpOrder.cs" />
+    <Compile Include="DataType\ExchangeEthOrder.cs" />
+    <Compile Include="DataType\ExchangeBchOrder.cs" />
+    <Compile Include="DataType\ExchangeLtcOrder.cs" />
+    <Compile Include="DataType\ExchangeBtcOrder.cs" />
+    <Compile Include="DataType\ExchangeOrder.cs" />
+    <Compile Include="DataType\Exchange\BinanceData.cs" />
+    <Compile Include="DataType\Exchange\BinancePayload.cs" />
+    <Compile Include="DataType\Exchange\BinanceTicker.cs" />
+    <Compile Include="DataType\Exchange\GdaxData.cs" />
+    <Compile Include="DataType\Exchange\BitmexData.cs" />
+    <Compile Include="DataType\Exchange\BitstampData.cs" />
+    <Compile Include="DataType\Exchange\KrakenData.cs" />
+    <Compile Include="DataType\Exchange\KunaData.cs" />
+    <Compile Include="DataType\Exchange\BtccData.cs" />
+    <Compile Include="DataType\Exchange\QuadrigaData.cs" />
+    <Compile Include="DataType\Exchange\WexData.cs" />
+    <Compile Include="DataType\Exchange\XBtcOrderBook.cs" />
+    <Compile Include="DataType\Exchange\BittrexData.cs" />
+    <Compile Include="DataType\Exchange\BinanceOrderBook.cs" />
+    <Compile Include="DataType\Exchange\HitBtcData.cs" />
+    <Compile Include="DataType\Exchange\WexOrderBook.cs" />
+    <Compile Include="DataType\Exchange\ExchangeSettingsData.cs" />
+    <Compile Include="DataType\Exchange\BitbayOrderBook.cs" />
+    <Compile Include="DataType\Exchange\BittrexOrderBook.cs" />
+    <Compile Include="DataType\Exchange\BittrexOrder.cs" />
+    <Compile Include="DataType\Exchange\BitBayData.cs" />
+    <Compile Include="DataType\Exchange\OkExOrderBook.cs" />
+    <Compile Include="DataType\Exchange\OkExData.cs" />
+    <Compile Include="DataType\Exchange\QuadrigaOrderBook.cs" />
+    <Compile Include="DataType\Exchange\KrakenOrderBook.cs" />
+    <Compile Include="DataType\Exchange\XBtcData.cs" />
+    <Compile Include="DataType\IAnalyticsEvents.cs" />
+    <Compile Include="DataType\IExchangeAltcoinEvents.cs" />
+    <Compile Include="DataType\Order.cs" />
+    <Compile Include="DataType\OrderInfo.cs" />
+    <Compile Include="DataType\RemoteCommand\ArbitrageCommand.cs" />
+    <Compile Include="DataType\RemoteCommand\DbBalanceCommand.cs" />
+    <Compile Include="DataType\RemoteCommand\ExchangePricesCommand.cs" />
+    <Compile Include="DataType\RemoteCommand\RestSchedulerCommand.cs" />
+    <Compile Include="DataType\WebApi\ChartRequest.cs" />
+    <Compile Include="DataType\WebApi\IndicatorRequest.cs" />
+    <Compile Include="DataType\WebApi\TradeRequest.cs" />
+    <Compile Include="DataType\WebApi\WalletRequest.cs" />
+    <Compile Include="DataType\WebApi\MarginRequest.cs" />
+    <Compile Include="DataType\WebApi\PositionRequest.cs" />
+    <Compile Include="DataType\WebApi\PriceLevelRequest.cs" />
+    <Compile Include="DataType\WebApi\SettingRequest.cs" />
+    <Compile Include="DataType\WebApi\OrderRequest.cs" />
+    <Compile Include="DataType\WebApi\LogRequest.cs" />
+    <Compile Include="Exchange\AccountManagement.cs" />
+    <Compile Include="Core\CancellationPattern.cs" />
+    <Compile Include="DataType\RemoteCommand\CurrencyRateCommand.cs" />
+    <Compile Include="DataType\RemoteCommand\ExchangeInfoCommand.cs" />
+    <Compile Include="DataType\RemoteCommand\RemoteCommand.cs" />
+    <Compile Include="DataType\RemoteCommand\ServiceEventCommand.cs" />
+    <Compile Include="DataType\ServiceEventData.cs" />
+    <Compile Include="DataType\Trade.cs" />
+    <Compile Include="Exchange\BaseWebSocketExchange.cs" />
+    <Compile Include="Exchange\BinanceRestExchange.cs" />
+    <Compile Include="Exchange\BinanceExchange.cs" />
+    <Compile Include="Exchange\BitmexOrderBookL2.cs" />
+    <Compile Include="Exchange\BitmexWebSocketClient.cs" />
+    <Compile Include="Exchange\GdaxExchange.cs" />
+    <Compile Include="Exchange\BitmexExchange.cs" />
+    <Compile Include="Exchange\BitstampExchange.cs" />
+    <Compile Include="Exchange\BitmexRestExchange.cs" />
+    <Compile Include="Exchange\BitstampRestExchange.cs" />
+    <Compile Include="Exchange\BittrexExchange.cs" />
+    <Compile Include="Exchange\HitBtcExchange.cs" />
+    <Compile Include="Exchange\HitBtcRestExchange.cs" />
+    <Compile Include="Exchange\KrakenExchange.cs" />
+    <Compile Include="Exchange\KunaExchange.cs" />
+    <Compile Include="Exchange\OkExExchange.cs" />
+    <Compile Include="Exchange\OkExRestExchange.cs" />
+    <Compile Include="Exchange\QuadrigaExchange.cs" />
+    <Compile Include="Instrument\AdaInstrument.cs" />
+    <Compile Include="Instrument\BchInstrument.cs" />
+    <Compile Include="Instrument\TrxInstrument.cs" />
+    <Compile Include="Instrument\XrpInstrument.cs" />
+    <Compile Include="Instrument\ICryptoIntrument.cs" />
+    <Compile Include="Instrument\InstrumentBaseType.cs" />
+    <Compile Include="Instrument\InstrumentBCH.cs" />
+    <Compile Include="Instrument\InstrumentBTC.cs" />
+    <Compile Include="Instrument\InstrumentETH.cs" />
+    <Compile Include="Instrument\InstrumentDASH.cs" />
+    <Compile Include="Instrument\InstrumentIOTA.cs" />
+    <Compile Include="Instrument\InstrumentXRP.cs" />
+    <Compile Include="Instrument\InstrumentLTC.cs" />
+    <Compile Include="ApiClient\RestApiClient.cs" />
+    <Compile Include="DataType\Exchange\BitbayOrder.cs" />
+    <Compile Include="DataType\Exchange\BitfinexOrderBook.cs" />
+    <Compile Include="DataType\Exchange\ExchangeTicker.cs" />
+    <Compile Include="DataType\Exchange\BtcTradeOrderBook.cs" />
+    <Compile Include="DataType\Exchange\CexData.cs" />
+    <Compile Include="DataType\Database\DbCurrencyRate.cs" />
+    <Compile Include="DataType\Database\DbExchange.cs" />
+    <Compile Include="DataType\Exchange\KunaOrder.cs" />
+    <Compile Include="DataType\Exchange\KunaOrderBook.cs" />
+    <Compile Include="DataType\OrderBook.cs" />
+    <Compile Include="Instrument\EosInstrument.cs" />
+    <Compile Include="Instrument\LtcInstrument.cs" />
+    <Compile Include="Instrument\EthInstrument.cs" />
+    <Compile Include="Instrument\XbtInstrument.cs" />
+    <Compile Include="Logger\IServiceEventLogger.cs" />
+    <Compile Include="Logger\LogTradeData.cs" />
+    <Compile Include="Logger\LogOrderBookData.cs" />
+    <Compile Include="DataType\Exchange\QuadrigaOrder.cs" />
+    <Compile Include="DataType\Enums.cs" />
+    <Compile Include="DataType\OrderResponse.cs" />
+    <Compile Include="Logger\DatabaseLogger.cs" />
+    <Compile Include="DataType\MatchingData.cs" />
+    <Compile Include="DataType\UserAccount.cs" />
+    <Compile Include="DataType\ExchangeFee.cs" />
+    <Compile Include="Exchange\BaseRestExchange.cs" />
+    <Compile Include="Exchange\BaseExchange.cs" />
+    <Compile Include="DataType\IExchange.cs" />
+    <Compile Include="DataType\ExchangeBalance.cs" />
+    <Compile Include="DataType\IExchangeEvents.cs" />
+    <Compile Include="Instrument\Instrument.cs" />
+    <Compile Include="Logger\RestServiceEventLogger.cs" />
+    <Compile Include="Logger\TradeLogger.cs" />
+    <Compile Include="Logger\OrderBookLogger.cs" />
+    <Compile Include="Logger\ServiceEventLogger.cs" />
+    <Compile Include="Service\CurrencyRateService.cs" />
+    <Compile Include="Service\DbRepositoryService.cs" />
+    <Compile Include="Service\DbGatewayService.cs" />
+    <Compile Include="Service\DbQueryStr.cs" />
+    <Compile Include="Service\DbRepository.cs" />
+    <Compile Include="Service\IDbRepository.cs" />
+    <Compile Include="Service\RemoteService.cs" />
+    <Compile Include="Service\SyncBalanceService.cs" />
+    <Compile Include="Service\TcpService.cs" />
+    <Compile Include="Service\TickerService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PusherClient\PusherClient.csproj">
+      <Project>{9e30e755-c00e-4bf7-b56b-8f2d836fba60}</Project>
+      <Name>PusherClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSocketDotNet\WebSocketDotNet.csproj">
+      <Project>{b357bac7-529e-4d81-a0d2-71041b19c8de}</Project>
+      <Name>WebSocketDotNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xNet\xNet.csproj">
+      <Project>{5d25d06e-0d35-42ef-bba2-d5de6e06cd04}</Project>
+      <Name>xNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

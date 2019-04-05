@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="BotCoin.BitmexScalper.StopOrderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BotCoin.BitmexScalper"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="CancelOrder">
+            <Setter Property="ListBox.Background" Value="LemonChiffon"/>
+            <Setter Property="ListBox.Margin" Value="0 25 0 3"/>
+        </Style>
+        <Style x:Key="DataGrid">
+            <Setter Property="DataGrid.HorizontalGridLinesBrush" Value="LightGray"/>
+            <Setter Property="DataGrid.GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="DataGrid.CanUserReorderColumns" Value="False"/>
+        </Style>
+    </UserControl.Resources>
+    <GroupBox Header="Stops">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.09*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="gridStops" Margin="3" Style="{StaticResource DataGrid}" SelectionChanged="OnGridStopOrderSelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Symbol" Width="60" Binding="{Binding Symbol}"/>
+                    <DataGridTextColumn Header="Side" Width="45" Binding="{Binding Side}"/>
+                    <DataGridTextColumn Header="Qty" Width="50" Binding="{Binding OrderQty}"/>
+                    <DataGridTextColumn Header="Price" Width="60" Binding="{Binding Price}"/>
+                    <DataGridTextColumn Header="Stop Price" Width="80" Binding="{Binding StopPrice}"/>
+                    <DataGridTextColumn Header="Trigger Price" Width="110" Binding="{Binding TriggerPrice}"/>
+                    <DataGridTextColumn Header="Status" Width="60" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Type" Width="60" Binding="{Binding Type}"/>
+                    <DataGridTextColumn Header="ExecInst" Width="70" Binding="{Binding ExecInst}"/>
+                    <DataGridTextColumn Header="Trail" Width="50" Binding="{Binding TrailValue}"/>
+                    <DataGridTextColumn Header="Time" Width="70" Binding="{Binding Time}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding FullTime}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <!--<DataGridTemplateColumn Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Cancel" Click="OnCancelOrderClick" Foreground="White" Background="LightCoral"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                </DataGrid.Columns>
+            </DataGrid>
+            <ListBox x:Name="lbStopOrders" Grid.Column="1" ItemsSource="{Binding}" Style="{StaticResource CancelOrder}" SelectionChanged="OnStopOrderListBoxItemSelected">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding StopPx}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </GroupBox>
+</UserControl>
